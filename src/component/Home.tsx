@@ -1,9 +1,16 @@
 import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { CurrencyRupee } from "@mui/icons-material";
+import { AddTransaction } from "./AddTransaction";
 
 export const Home = (props: any) => {
+	const [allTransaction, setAllTransaction] = useState([]);
 	const [totalExpense, setTotalExpense] = useState(0);
+	const [showAddExpenseForm, setShowAddExpenseForm] = useState(false);
+
+	const onAddExpenseClick = () => {
+		setShowAddExpenseForm(true);
+	}
 
 	return (
 		<>
@@ -47,11 +54,18 @@ export const Home = (props: any) => {
 					<Button sx={{
 						my: 5,
 						p: 2
-					}} variant="contained" size="medium" endIcon={<CurrencyRupee />} > 
+					}} variant="contained" size="medium" endIcon={<CurrencyRupee />} onClick={onAddExpenseClick}> 
 						Add Expense 
 					</Button>
 				</div>
 			</Box>
+			{
+				showAddExpenseForm && 
+					<AddTransaction 
+						open={showAddExpenseForm}
+						setShowAddExpenseForm={setShowAddExpenseForm}
+					/>
+			}
 		</>
 	);
 };
