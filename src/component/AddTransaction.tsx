@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Box, Button, FormControl, Modal, SxProps } from "@mui/material";
 import { TextField } from "@mui/material";
 import { MenuItem } from "@mui/material";
-import "./AddTransaction.css";
 import { Theme } from "@emotion/react";
 
 const categories = ["Grocery", "Rent", "Salary", "Tax", "Miscellaneous"];
 interface AddTransactionProps {
 	open: boolean;
 	setShowAddExpenseForm: any;
+	setAllTransaction: any;
 }
 
 const modalStyle: SxProps<Theme> = {
@@ -18,6 +18,7 @@ const modalStyle: SxProps<Theme> = {
 	alignItems: "center",
 	left: "30vw",
 };
+
 export const AddTransaction = (props: AddTransactionProps) => {
 	const [category, setCategory] = useState<string>("");
 	const [description, setDescription] = useState<string>("");
@@ -25,19 +26,28 @@ export const AddTransaction = (props: AddTransactionProps) => {
 	const [date, setDate] = useState<Date>();
 
 	const handleCategory = (event: any) => {
-		setCategory(event.target.value);
+		setCategory(categories[parseInt(event.target.value)]);
 	};
 	const handleDescription = (event: any) => {
 		setDescription(event.target.value);
 	};
 	const handleDate = (event: any) => {
-		console.log(event.target.value);
 		setDate(event.target.value);
 	};
 	const handleAmount = (event: any) => {
 		setAmount(event.target.value);
 	};
-	const handleSubmit = () => {};
+	const handleSubmit = (event: any) => {
+		event.preventDefault();
+		let data = {
+			date,
+			category,
+			amount,
+			description
+		};
+		props.setShowAddExpenseForm(false);
+		props.setAllTransaction((prevState: []) => [...prevState, data]);
+	};
 
 	return (
 		<Modal
@@ -103,8 +113,9 @@ export const AddTransaction = (props: AddTransactionProps) => {
 					type="date"
 					defaultValue={new Date().toLocaleDateString()}
 					onChange={handleDate}
+					required
 				/>
-				<Button variant="contained">Add</Button>
+				<Button variant="contained" type="submit">Add</Button>
 			</Box>
 		</Modal>
 	);

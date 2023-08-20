@@ -2,6 +2,7 @@ import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { CurrencyRupee } from "@mui/icons-material";
 import { AddTransaction } from "./AddTransaction";
+import { TransactionHistory } from "./TransactionHistory";
 
 export const Home = (props: any) => {
 	const [allTransaction, setAllTransaction] = useState([]);
@@ -64,8 +65,10 @@ export const Home = (props: any) => {
 					<AddTransaction 
 						open={showAddExpenseForm}
 						setShowAddExpenseForm={setShowAddExpenseForm}
+						setAllTransaction={setAllTransaction}
 					/>
 			}
+			<TransactionHistory history={allTransaction}/>
 		</>
 	);
 };
