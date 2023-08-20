@@ -12,9 +12,11 @@ interface AddTransactionProps {
 }
 
 const modalStyle: SxProps<Theme> = {
-	width: "100%",
+	width: "40vw",
 	display: "flex",
 	justifyContent: "center",
+	alignItems: "center",
+	left: "30vw"
 };
 export const AddTransaction = (props: AddTransactionProps) => {
 	const [category, setCategory] = useState<string>("");
@@ -49,7 +51,10 @@ export const AddTransaction = (props: AddTransactionProps) => {
 				<Box
 					component="form"
 					sx={{
-						"& .MuiTextField-root": { m: 1, width: "25ch" },
+						"& .MuiTextField-root": { m: 3, width: "25ch" },
+						display: "flex",
+						flexDirection: "column",
+						alignItems: "center",
 						bgcolor: (theme) =>
 							theme.palette.mode === "dark" ? "#101010" : "grey.100",
 						color: (theme) =>
