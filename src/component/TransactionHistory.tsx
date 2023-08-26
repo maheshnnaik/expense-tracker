@@ -10,9 +10,9 @@ export const TransactionHistory = (props: TransactionHistoryProps) => {
 		<TableContainer component={Paper}>
 			<Table sx={{ minWidth: 650 }} aria-label="Transaction History">
 				<TableHead>
-					<TableRow>
+					<TableRow key="row">
 						{
-							columns.map((column) => <TableCell align="center">{column}</TableCell>)
+							columns.map((column) => <TableCell key={column} align="center">{column}</TableCell>)
 						}
 					</TableRow>
 				</TableHead>
@@ -20,11 +20,11 @@ export const TransactionHistory = (props: TransactionHistoryProps) => {
 					{
 						props.history.map((transaction, index) => (
 							<TableRow key={index+1}>
-								<TableCell align="center">{index + 1}</TableCell>
-								<TableCell align="center">{transaction.date}</TableCell>
-								<TableCell align="center">{transaction.category}</TableCell>
-								<TableCell align="center">{transaction.amount}</TableCell>
-								<TableCell align="center">{transaction.description}</TableCell>
+								<TableCell key={index+1} align="center">{index + 1}</TableCell>
+								<TableCell key={index+1} align="center">{transaction.date}</TableCell>
+								<TableCell key={index+1} align="center">{transaction.category}</TableCell>
+								<TableCell key={index+1} align="center">{transaction.amount}</TableCell>
+								<TableCell key={index+1} align="center">{transaction.description}</TableCell>
 							</TableRow>
 						))
 					}
