@@ -6,7 +6,7 @@ import { TransactionHistory } from "./TransactionHistory";
 
 export const Home = (props: any) => {
 	const [allTransaction, setAllTransaction] = useState([]);
-	const [totalExpense, setTotalExpense] = useState(0);
+	const [totalExpense, setTotalExpense] = useState<number>(0);
 	const [showAddExpenseForm, setShowAddExpenseForm] = useState(false);
 
 	const onAddExpenseClick = () => {
@@ -66,6 +66,7 @@ export const Home = (props: any) => {
 						open={showAddExpenseForm}
 						setShowAddExpenseForm={setShowAddExpenseForm}
 						setAllTransaction={setAllTransaction}
+						setTotalExpense={setTotalExpense}
 					/>
 			}
 			<TransactionHistory history={allTransaction}/>

@@ -9,6 +9,7 @@ interface AddTransactionProps {
 	open: boolean;
 	setShowAddExpenseForm: any;
 	setAllTransaction: any;
+	setTotalExpense: Function;
 }
 
 const modalStyle: SxProps<Theme> = {
@@ -22,7 +23,7 @@ const modalStyle: SxProps<Theme> = {
 export const AddTransaction = (props: AddTransactionProps) => {
 	const [category, setCategory] = useState<string>("");
 	const [description, setDescription] = useState<string>("");
-	const [amount, setAmount] = useState<number>();
+	const [amount, setAmount] = useState<number>(0);
 	const [date, setDate] = useState<Date>();
 
 	const handleCategory = (event: any) => {
@@ -35,7 +36,7 @@ export const AddTransaction = (props: AddTransactionProps) => {
 		setDate(event.target.value);
 	};
 	const handleAmount = (event: any) => {
-		setAmount(event.target.value);
+		setAmount(parseInt(event.target.value));
 	};
 	const handleSubmit = (event: any) => {
 		event.preventDefault();
@@ -47,6 +48,7 @@ export const AddTransaction = (props: AddTransactionProps) => {
 		};
 		props.setShowAddExpenseForm(false);
 		props.setAllTransaction((prevState: []) => [...prevState, data]);
+		props.setTotalExpense((prevState: number) => (prevState + amount));
 	};
 
 	return (
