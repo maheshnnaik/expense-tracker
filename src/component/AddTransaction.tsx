@@ -4,7 +4,7 @@ import { TextField } from "@mui/material";
 import { MenuItem } from "@mui/material";
 import { Theme } from "@emotion/react";
 
-const categories = ["Grocery", "Rent", "Salary", "Tax", "Miscellaneous"];
+const categories = ["Grocery", "Rent", "Food", "Miscellaneous"];
 interface AddTransactionProps {
 	open: boolean;
 	setShowAddExpenseForm: any;
